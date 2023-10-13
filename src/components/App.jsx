@@ -1,21 +1,31 @@
-import { TitleComponent } from './TitleComponent';
-import { Product } from './Product';
+import { TitleComponent } from './Title/Title';
+import { Product } from './Product/Product';
 import { productsData } from 'Data/productsData';
+import css from './App.module.css';
+import Section from './Section/Section';
 
 export const App = () => {
   return (
     <div>
-      <TitleComponent />
+      <Section>
+        <TitleComponent />
+        <TitleComponent />
+      </Section>
 
-      {productsData.map(({ id, title, price, discount }) => {
-        return (
-          <Product key={id} title={title} price={price} discount={discount} />
-        );
-      })}
-
-      {/* <Product title="Tacos With Lime" price="7.99" discount={1.4} />
-      <Product title="Tacos With Lemon" price="4.99" discount={2.6} />
-      <Product title="Tacos L" price="2.99" discount={null} /> */}
+      <Section title="Product List">
+        <div className={css.productList}>
+          {productsData.map(({ id, title, price, discount }) => {
+            return (
+              <Product
+                key={id}
+                title={title}
+                price={price}
+                discount={discount}
+              />
+            );
+          })}
+        </div>
+      </Section>
     </div>
   );
 };
